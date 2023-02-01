@@ -1,4 +1,5 @@
 import express from "express";
+import seniorRoutes from "./routes/seniorRoutes.js";
 
 const app = express();
 
