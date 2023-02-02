@@ -18,4 +18,6 @@ const controller = {
   },
 };
 
+const user = await controller.getUsers();
+console.log(user);
 export default controller;
