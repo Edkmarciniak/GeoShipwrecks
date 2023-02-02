@@ -4,7 +4,6 @@
   "type": "module",
   "scripts": {
     "start": "node --watch app/index.js",
-    "dep-graph": "depcruise --exclude \"^node_modules\" --output-type dot src | dot -T svg > dependency-graph.svg",
     "test": "vitest"
   },
   "devDependencies": {

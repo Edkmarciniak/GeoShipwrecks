@@ -18,4 +18,4 @@ const seniorSchema = new Schema({
 });
 
 // Start from here tomorrow
-export default model("user", seniorSchema);
+export default model("Senior", seniorSchema);
