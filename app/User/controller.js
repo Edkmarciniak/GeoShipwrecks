@@ -16,3 +16,6 @@ const controller = {
   getUsers() {
     return User.find();
   },
+};
+
+export default controller;
