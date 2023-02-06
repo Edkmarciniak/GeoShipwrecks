@@ -16,6 +16,14 @@ const seniorSchema = new Schema({
       },
     },
   },
+  password: {
+    type: String,
+    required: [true, "Password is required"],
+    minLength: [3, "Password must be at least 3 characters long"],
+    trim: true,
+  },
+});
+
 });
 
 // Start from here tomorrow
