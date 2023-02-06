@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import userSchema from "./user-schema.js";
 
 const seniorSchema = new Schema({
   name: {
