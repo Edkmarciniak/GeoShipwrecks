@@ -1,23 +1,14 @@
-import mongoose from "mongoose";
-import config from "../config.js";
 import User from "./User.js";
 
-mongoose.set("strictQuery", true);
-mongoose
-  .connect(config.getDbConn("users"))
-  .then(() => {
-    console.info("Connected to the database");
-  })
-  .catch((err) => {
-    console.error("Error connecting to the database", err);
-  });
+const userController = {
+  create(username, password) {
+    return User.create({ username, password });
+  },
 
-const controller = {
-  getUsers() {
-    return User.find();
+  async login(username, password) {
+    const loggedInUser = await User.login(username, password);
+    return loggedInUser;
   },
 };
 
-const user = await controller.getUsers();
-console.log(user);
-export default controller;
+export default userController;
