@@ -22,6 +22,8 @@ const seniorSchema = new Schema({
     minLength: [3, "Password must be at least 3 characters long"],
     trim: true,
   },
+  // TODO: Get more stuff from 'user-schema.js' (and then delete that file)
+  services: [serviceSchema],
 });
 
 seniorSchema.pre("save", async function (next) {
