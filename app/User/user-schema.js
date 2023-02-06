@@ -24,4 +24,12 @@ export default new Schema({
     type: Number,
     required: [true, "Phone number is required"],
   },
+  address: {
+    type: String,
+    required: [true, "Address is required"],
+  },
+  services: {
+    type: [String],
+    enum: ["Food", "Transportation", "Housework", "Other"],
+  },
 });
