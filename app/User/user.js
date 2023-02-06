@@ -36,5 +36,10 @@ seniorSchema.pre("save", async function (next) {
 UserSchema.statics.login = async function (username, password) {
   const user = await this.findOne({ username });
 
+  let isMatch = false;
+  if (user) {
+    isMatch = await bcrypt.compare(password, user.password);
+  }
+
 
 export default model("Senior", seniorSchema);
