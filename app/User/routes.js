@@ -3,17 +3,29 @@ import userController from "./controller.js";
 
 const router = new Router();
 
-// /api/student
-// * DON'T REPEAT '/api/students' - it's already in app/index.js
-router.get("/", (_, res) => {
-  userController
-    .getUsers()
-    .then((users) => {
-      res.json(users);
-    })
-    .catch((err) => {
-      res.status(500).json({ message: err.message });
-    });
+router.post("/create", async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await userController.create(username, password);
+
+  res.json(user);
+});
+
+router.post("/login", async (req, res) => {
+  if (req.user) {
+    return res.json({ message: "You are already logged in" });
+  }
+
+  const { username, password } = req.body;
+
+  // Will return a JWT token or null
+  const jwt = await userController.login(username, password);
+
+  if (jwt) {
+    res.json({ token: jwt });
+  } else {
+    res.status(401).json({ message: "Invalid credentials" });
+  }
 });
 
 export default router;

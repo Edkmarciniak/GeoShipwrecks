@@ -1,16 +1,18 @@
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { Schema, model } from "mongoose";
-import userSchema from "./user-schema.js";
+import config from "../config.js";
 
 const seniorSchema = new Schema({
-  name: {
+  username: {
     type: String,
     required: [true, "User name is required"],
     minLength: [3, "User name must be at least 3 characters long"],
     trim: true,
     validate: {
-      validator(name) {
+      validator(username) {
         // Only allow letters and spaces (one space in between words)
-        return /[a-zA-Z]+([\s][a-zA-Z]+)*/.test(name);
+        return /[a-zA-Z]+([\s][a-zA-Z]+)*/.test(username);
       },
       message:
         "User name must only contain letters and only one space in between names",
