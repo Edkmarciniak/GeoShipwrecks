@@ -41,5 +41,18 @@ UserSchema.statics.login = async function (username, password) {
     isMatch = await bcrypt.compare(password, user.password);
   }
 
+  return isMatch
+    ? jwt.sign(
+        {
+          user: {
+            id: user._id,
+            username: user.username,
+          },
+        },
+        config.jwtSecret,
+        { expiresIn: config.jwtExpiresIn }
+      )
+    : null;
+};
 
 export default model("Senior", seniorSchema);
