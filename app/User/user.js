@@ -14,8 +14,6 @@ const seniorSchema = new Schema({
         // Only allow letters and spaces (one space in between words)
         return /[a-zA-Z]+([\s][a-zA-Z]+)*/.test(username);
       },
-      message:
-        "User name must only contain letters and only one space in between names",
     },
   },
 });
