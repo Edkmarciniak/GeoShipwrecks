@@ -25,7 +25,6 @@ const seniorSchema = new Schema({
 });
 
 seniorSchema.pre("save", async function (next) {
-  // * Only hash the password if it has been modified (or is new)
   if (this.isModified("password")) {
     const generatedSalt = await bcrypt.genSalt(config.saltRounds);
     this.password = await bcrypt.hash(this.password, generatedSalt);
