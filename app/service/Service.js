@@ -18,43 +18,67 @@ const serviceSchema = new Schema({
     ],
   },
 
-  const requestedBySchema = new Schema({
-    name: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    password: {
-      type: String,
-      required: true
-    },
-    date: {
-      type: Date,
-      default: Date.now
-    }
-  }
+ // Requested-By
+const requestedBySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  services: {
+    type: [String],
+    enum: [
+      "Housekeeping",
+      "Laundry",
+      "Meals",
+      "Grooming",
+      "Yardwork",
+      "Transportation",
+      "Shopping",
+      "Companionship",
+    ],
+});
 
-  const fulfilledBySchema = new Schema({
-    name: {
-      type: String,
-      required: true
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    password: {
-      type: String,
-      required: true
-    },
-    date: {
-      type: Date,
-      default: Date.now
-    }
-  }
+// Fulfilled-By
+const fulfilledBySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
+  address: {
+    type: String,
+    required: true
+  },
+  services: {
+    type: [String],
+    enum: [
+      "Housekeeping",
+      "Laundry",
+      "Meals",
+      "Grooming",
+      "Yardwork",
+      "Transportation",
+      "Shopping",
+      "Companionship",
+    ],
+
 });
