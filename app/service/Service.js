@@ -10,5 +10,5 @@ const serviceSchema = new Schema({
   },
   requestedBy: userSchema,
 
-  acceptedBy: userSchema,
+  fulfilledBy: userSchema,
 });
