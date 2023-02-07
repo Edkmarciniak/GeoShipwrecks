@@ -17,9 +17,10 @@ const serviceSchema = new Schema({
       "Companionship",
     ],
   },
+})
 
  // Requested-By
-const requestedBySchema = new mongoose.Schema({
+const requestedBy = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -51,7 +52,7 @@ const requestedBySchema = new mongoose.Schema({
 });
 
 // Fulfilled-By
-const fulfilledBySchema = new mongoose.Schema({
+const fulfilledBy = new mongoose.Schema({
   name: {
     type: String,
     required: true

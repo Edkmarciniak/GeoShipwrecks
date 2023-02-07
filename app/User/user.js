@@ -3,16 +3,16 @@ import jwt from "jsonwebtoken";
 import { Schema, model } from "mongoose";
 import config from "../config.js";
 
-const seniorSchema = new Schema({
-  username: {
+const userSchema = new Schema({
+  User: {
     type: String,
     required: [true, "User name is required"],
     minLength: [3, "User name must be at least 3 characters long"],
     trim: true,
     validate: {
-      validator(username) {
+      validator(user) {
         // Only allow letters and spaces (one space in between words)
-        return /[a-zA-Z]+([\s][a-zA-Z]+)*/.test(username);
+        return /[a-zA-Z]+([\s][a-zA-Z]+)*/.test(user);
       },
     },
   },
@@ -30,6 +30,7 @@ const seniorSchema = new Schema({
     enum: ["Senior", "Provider"],
     default: "Senior",
   },
+
   name: {
     type: String,
     required: [true, "User name is required"],
@@ -53,17 +54,9 @@ const seniorSchema = new Schema({
     required: [true, "Address is required"],
   },
   services: {
-    type: [String],
-    enum: [
-      "Housekeeping",
-      "Laundry",
-      "Meals",
-      "Grooming",
-      "Yardwork",
-      "Transportation",
-      "Shopping",
-      "Companionship",
-    ],
+    // If 'userType' is 'Senior', then this is a list of services requested
+    // If 'userType' is 'Provider', then this is a list of services provided
+    type: [serviceSchema],
   },
 });
 
