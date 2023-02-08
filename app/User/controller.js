@@ -11,6 +11,13 @@ const userController = {
     const loggedInUser = await User.login(username, password);
     return loggedInUser;
   },
+
+  createService(service) {
+    return service.create(service);
+  },
+  createAddress(address) {
+    return address.create(address);
+  },
 };
 
 export default userController;

@@ -25,10 +25,13 @@ const userSchema = new Schema({
   // TODO: Get more stuff from 'user-schema.js' (and then delete that file)
   // services: [serviceSchema]
 
-  userType: {
+  import { Schema } from "mongoose";
+
+  export default new Schema({
+    user: {
     type: String,
-    enum: ["Senior", "Provider"],
-    default: "Senior",
+    enum: ["User", "Provider"],
+    default: "User",
   },
 
   name: {
@@ -60,7 +63,7 @@ const userSchema = new Schema({
   },
 });
 
-seniorSchema.pre("save", async function (next) {
+userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     const generatedSalt = await bcrypt.genSalt(config.saltRounds);
     this.password = await bcrypt.hash(this.password, generatedSalt);
@@ -69,7 +72,7 @@ seniorSchema.pre("save", async function (next) {
   next();
 });
 
-seniorSchema.statics.login = async function (username, password) {
+userSchema.statics.login = async function (username, password) {
   const user = await this.findOne({ username });
 
   let isMatch = false;
@@ -91,4 +94,4 @@ seniorSchema.statics.login = async function (username, password) {
     : null;
 };
 
-export default model("Senior", seniorSchema);
+export default model("User", userSchema);

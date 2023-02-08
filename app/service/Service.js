@@ -49,7 +49,6 @@ const requestedBy = new mongoose.Schema({
       "Shopping",
       "Companionship",
     ],
-});
 
 // Fulfilled-By
 const fulfilledBy = new mongoose.Schema({
