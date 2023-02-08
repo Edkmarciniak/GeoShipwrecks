@@ -22,10 +22,12 @@ const userSchema = new Schema({
     minLength: [3, "Password must be at least 3 characters long"],
     trim: true,
   },
+});
+
   // TODO: Get more stuff from 'user-schema.js' (and then delete that file)
   // services: [serviceSchema]
 
-  import { Schema } from "mongoose";
+  import serviceSchema from "mongoose";
 
   export default new Schema({
     user: {
@@ -63,6 +65,7 @@ const userSchema = new Schema({
   },
 });
 
+
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     const generatedSalt = await bcrypt.genSalt(config.saltRounds);
@@ -71,7 +74,7 @@ userSchema.pre("save", async function (next) {
 
   next();
 });
-
+// * If there is a user
 userSchema.statics.login = async function (username, password) {
   const user = await this.findOne({ username });
 
