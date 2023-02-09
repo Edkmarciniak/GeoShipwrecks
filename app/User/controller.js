@@ -1,5 +1,5 @@
 import User from "./User.js";
-import address from "./address.schema.js";
+import address from "./address-schema.js";
 import service from "../service/service.js";
 
 const userController = {
