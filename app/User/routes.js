@@ -3,6 +3,17 @@ import userController from "./controller.js";
 
 const router = new Router();
 
+router.get("/:id", async (req, res) => {
+  const newUser = await controller
+    .getUserById(req.params.id)
+    .catch((err) => {
+      if (err instanceof mongoose.Error.CastError && err.kind === "ObjectId") {
+        res.status(400).json({ message: "Invalid ID" });
+      } else {
+        res.status(500).json({ message: err.message });
+      }
+    });
+
 router.post("/create", async (req, res) => {
   const { username, password } = req.body;
 
