@@ -4,43 +4,9 @@ import { Schema, model } from "mongoose";
 import config from "../config.js";
 
 const userSchema = new Schema({
-  User: {
-    type: String,
-    required: [true, "User name is required"],
-    minLength: [3, "User name must be at least 3 characters long"],
-    trim: true,
-    validate: {
-      validator(user) {
-        // Only allow letters and spaces (one space in between words)
-        return /[a-zA-Z]+([\s][a-zA-Z]+)*/.test(user);
-      },
-    },
-  },
-  password: {
-    type: String,
-    required: [true, "Password is required"],
-    minLength: [3, "Password must be at least 3 characters long"],
-    trim: true,
-  },
-});
-
-  // TODO: Get more stuff from 'user-schema.js' (and then delete that file)
-  // services: [serviceSchema]
-
-  import serviceSchema from "mongoose";
-
-  export default new Schema({
-    user: {
-    type: String,
-    enum: ["User", "Provider"],
-    default: "User",
-  },
-
   name: {
     type: String,
-    required: [true, "User name is required"],
-    minLength: [3, "User name must be at least 3 characters long"],
-    trim: true,
+    required: [true, "Name is required"],
   },
   email: {
     type: Number,
@@ -64,7 +30,6 @@ const userSchema = new Schema({
     type: [serviceSchema],
   },
 });
-
 
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
