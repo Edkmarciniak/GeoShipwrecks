@@ -2,20 +2,24 @@ import { MongoClient } from "mongodb";
 import config from "./config.js";
 
 const client = new MongoClient(config.db.conn);
-let db;
 
-try {
-  await client.connect();
-  db = client.db(config.db.name);
-} catch (err) {
-  console.error(err.message);
-} finally {
-  await client.close();
-}
+client
+  .connect()
+  .then(() => {
+    console.info("MongoDB Client 🏃🏾‍♂️");
+  })
+  .catch((err) => {
+    console.error("Error starting MongoDB Client", err.message);
 
-process.on("exit", () => {
-  client.close();
-  console.info("MongoDB connection closed");
+    // Exit process with failure
+    process.exit(1);
+  });
+
+process.on("SIGINT", () => {
+  client.close().then(() => {
+    console.info("MongoDB Client disconnected");
+    process.exit(0);
+  });
 });
 
-export default db;
+export default client;
