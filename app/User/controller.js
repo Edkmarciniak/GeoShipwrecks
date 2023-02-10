@@ -1,19 +1,18 @@
 import User from "./User.js";
 
 const userController = {
-  create(username, password) {
-    // Does the user already exist?
-    const existingUser = User.findOne({ username });
+  create(email, password) {
+    const existingUser = User.findOne({ email });
 
     if (existingUser) {
       return Promise.reject(new Error("User already exists"));
     }
 
-    return User.create({ username, password });
+    return User.create({ email, password });
   },
 
-  async login(username, password) {
-    const loggedInUser = await User.login(username, password);
+  async login(email, password) {
+    const loggedInUser = await User.login(email, password);
     return loggedInUser;
   },
 };
