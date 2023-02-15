@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import shipRouter from "./shipfinder/routes.js";
+import userRouter from "./users/routes.js";
 
 const app = express();
 
