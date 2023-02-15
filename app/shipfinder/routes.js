@@ -4,6 +4,7 @@ import controller from "./controller.js";
 const router = new Router();
 
 router.get("/", (_, res) => {
+  console.log("GET /");
   controller
     .index()
     .then((data) => {
