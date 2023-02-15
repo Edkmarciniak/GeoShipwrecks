@@ -1,5 +1,5 @@
-import dbConn from "../db.js";
 import config from "../config.js";
+import dbConn from "../db.js";
 
 const collection = dbConn.db(config.db.name).collection("shipfinder");
 
@@ -8,6 +8,7 @@ const controller = {
     return (
       collection
         .find()
+        .limit(100)
         // TODO: Customize this limit number as needed
         .toArray()
     );
