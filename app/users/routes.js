@@ -14,4 +14,15 @@ router.get("/", (_, res) => {
     });
 });
 
+router.post("/users", (req, res) => {
+  controller
+    .users(req.body)
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 export default router;
